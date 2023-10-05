@@ -17,6 +17,7 @@ spec:
     - /dev/sdb
     - /dev/sdc
     - /dev/sdd
+    - /dev/sde
     journalDevice: auto
   secretsProvider: k8s
   startPort: 17001
