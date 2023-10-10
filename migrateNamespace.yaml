@@ -8,6 +8,6 @@ spec:
   includeResources: true
   startApplications: true
   namespaces:
-    - default # update this namespace!
+    - costco-migration # update this namespace!
   #adminClusterPair: cluster02
   purgeDeletedResources: false
