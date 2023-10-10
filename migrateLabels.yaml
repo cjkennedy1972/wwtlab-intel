@@ -8,7 +8,7 @@ spec:
   includeResources: true
   startApplications: true
   namespaces:
-    - default
+    - costco-migrate
   purgeDeletedResources: false
   selectors: 
     pxmigrate: "true"
