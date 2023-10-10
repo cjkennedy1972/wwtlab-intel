@@ -1,0 +1,34 @@
+# Update the storage cluster to add ip addresses for the portworx-api service
+
+# Find the IP addresses of the cluster
+oc -n portworx get service
+
+# Set pxctl alias 
+alias pxctl='kubectl exec $(kubectl get pods -l name=portworx -n portworx -o jsonpath='{.items[0].metadata.name}') -n portworx -- /opt/pwx/bin/pxctl'
+
+pxctl status
+
+# Download the storkctl binary from the stork pod
+STORK_POD=$(kubectl get pods -n <namespace> -l name=stork -o jsonpath='{.items[0].metadata.name}') &&
+kubectl cp -n <namespace> $STORK_POD:/storkctl/linux/storkctl ./storkctl
+sudo mv storkctl /usr/local/bin &&
+sudo chmod +x /usr/local/bin/storkctl
+
+# install credentials for both clusters. Run the following on each cluster
+pxctl credentials create \
+--provider s3 \
+--s3-access-key wwt \
+--s3-secret-key ZKrXE654AVhtU9ag73sWeQ \
+--s3-region us-west-1  \
+--s3-endpoint minio.ccrow.org \
+--s3-storage-class STANDARD \
+clusterPair_7dc3d086-a982-41c0-8268-ca533416aa46
+
+pxctl credentials create \
+--provider s3 \
+--s3-access-key wwt \
+--s3-secret-key ZKrXE654AVhtU9ag73sWeQ \
+--s3-region us-west-1  \
+--s3-endpoint minio.ccrow.org \
+--s3-storage-class STANDARD \
+clusterPair_cf812bcf-1c37-4494-bb42-e404afd038ab
