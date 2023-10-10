@@ -1,0 +1,13 @@
+apiVersion: stork.libopenstorage.org/v1alpha1
+kind: Migration
+metadata:
+  name: migrate12 #update this name!
+  namespace: portworx
+spec:
+  clusterPair: cluster2
+  includeResources: true
+  startApplications: true
+  namespaces:
+    - default # update this namespace!
+  #adminClusterPair: cluster02
+  purgeDeletedResources: false
