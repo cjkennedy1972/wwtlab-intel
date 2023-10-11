@@ -3,6 +3,8 @@ kind: NodeNetworkConfigurationPolicy
 metadata:
   name: br1-ens7f1-policy 
 spec:
+  nodeSelector:
+    kubernetes.io/hostname: <node01>
   desiredState:
     interfaces:
       - name: br1 
