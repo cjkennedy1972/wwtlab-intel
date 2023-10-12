@@ -1,14 +1,14 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: br1-ens7f1-policy 
+  name: node2-br1-ens1f1-policy 
 spec:
   nodeSelector:
-    kubernetes.io/hostname: <node01>
+    kubernetes.io/hostname: costco-cl2-node2
   desiredState:
     interfaces:
       - name: br1 
-        description: Linux bridge with ens7f1 as a port 
+        description: Linux bridge with ens1f1 as a port 
         type: linux-bridge 
         state: up 
         ipv4:
@@ -19,4 +19,4 @@ spec:
             stp:
               enabled: false 
           port:
-            - name: ens7f1
+            - name: ens1f1
