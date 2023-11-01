@@ -1,0 +1,23 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: worker-enable-multipathing
+spec:
+  config:
+    ignition: 
+      version: 3.2.0
+    storage:
+      files:
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,YmxhY2tsaXN0IHsKICAgICAgZGV2bm9kZSAiXnB4ZFswLTldKiIKICAgICAgZGV2bm9kZSAiXnB4ZCoiCiAgICAgIGRldmljZSB7CiAgICAgICAgdmVuZG9yICJWTXdhcmUiCiAgICAgICAgcHJvZHVjdCAiVmlydHVhbCBkaXNrIgogICAgICB9Cn0KZGVmYXVsdHMgewogdXNlcl9mcmllbmRseV9uYW1lcyBubwogZmluZF9tdWx0aXBhdGhzIHllcwogcG9sbGluZ19pbnRlcnZhbCAgMTAKfQpkZXZpY2VzIHsKICAgIGRldmljZSB7CiAgICAgICAgdmVuZG9yICAgICAgICAgICAgICAgICAgICJQVVJFIgogICAgICAgIHByb2R1Y3QgICAgICAgICAgICAgICAgICAiRmxhc2hBcnJheSIKICAgICAgICBwYXRoX3NlbGVjdG9yICAgICAgICAgICAgInNlcnZpY2UtdGltZSAwIgogICAgICAgIGhhcmR3YXJlX2hhbmRsZXIgICAgICAgICAiMSBhbHVhIgogICAgICAgIHBhdGhfZ3JvdXBpbmdfcG9saWN5ICAgICBncm91cF9ieV9wcmlvCiAgICAgICAgcHJpbyAgICAgICAgICAgICAgICAgICAgIGFsdWEKICAgICAgICBmYWlsYmFjayAgICAgICAgICAgICAgICAgaW1tZWRpYXRlCiAgICAgICAgcGF0aF9jaGVja2VyICAgICAgICAgICAgIHR1cgogICAgICAgIGZhc3RfaW9fZmFpbF90bW8gICAgICAgICAxMAogICAgICAgIHVzZXJfZnJpZW5kbHlfbmFtZXMgICAgICBubwogICAgICAgIG5vX3BhdGhfcmV0cnkgICAgICAgICAgICAwCiAgICAgICAgZmVhdHVyZXMgICAgICAgICAgICAgICAgIDAKICAgICAgICBkZXZfbG9zc190bW8gICAgICAgICAgICAgNjAwCiAgICB9Cn0=
+        mode: 420
+        path: /etc/multipath.conf
+    systemd:
+      units:
+      - name: multipathd.service
+        enabled: true
+# The above manifest enabled multipathing for FiberChannel based connections. To add iSCSI based FlashArray's uncomment the two lines below to enable the iSCSI service in RHCOS.
+      - name: iscsid.service
+        enabled: true
