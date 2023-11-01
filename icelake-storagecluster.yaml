@@ -2,7 +2,7 @@
 kind: StorageCluster
 apiVersion: core.libopenstorage.org/v1
 metadata:
-  name: px-cluster-ce013b12-94e9-4759-aa8f-690ebe72fead
+  name: ocp-on-icelake
   namespace: portworx
   annotations:
     portworx.io/is-openshift: "true"
