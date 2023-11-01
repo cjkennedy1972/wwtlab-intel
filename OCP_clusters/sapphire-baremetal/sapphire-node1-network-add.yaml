@@ -1,0 +1,19 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: host1-eno12409-policy 
+spec:
+  nodeSelector: 
+    kubernetes.io/hostname: host1 
+  desiredState:
+    interfaces:
+    - name: eno12409 
+      description: Configuring eno12409 on host1 
+      type: ethernet 
+      state: up 
+      ipv4:
+        dhcp: false
+        address:
+        - ip:  10.253.231.172
+          prefix-length: 26
+        enabled: true 
