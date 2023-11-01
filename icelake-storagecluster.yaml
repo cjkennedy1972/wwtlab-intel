@@ -1,0 +1,39 @@
+# SOURCE: https://install.portworx.com/?operator=true&mc=false&kbver=1.26.9&ns=portworx&oem=esse&user=db8c1ec1-0330-11eb-a2c5-c24e499c7467&b=true&iop=6&s=%2522size%253D1000%2522&j=auto&pureSanType=ISCSI&r=17001&c=px-cluster-ce013b12-94e9-4759-aa8f-690ebe72fead&osft=true&stork=true&csi=true&mon=true&tel=true&st=k8s&promop=true
+kind: StorageCluster
+apiVersion: core.libopenstorage.org/v1
+metadata:
+  name: px-cluster-ce013b12-94e9-4759-aa8f-690ebe72fead
+  namespace: portworx
+  annotations:
+    portworx.io/is-openshift: "true"
+    portworx.io/disable-storage-classes: "true"
+spec:
+  image: portworx/oci-monitor:3.0.3
+  imagePullPolicy: Always
+  kvdb:
+    internal: true
+  cloudStorage:
+    deviceSpecs:
+    - size 1000
+    journalDeviceSpec: auto
+  secretsProvider: k8s
+  startPort: 17001
+  stork:
+    enabled: true
+    args:
+      webhook-controller: "true"
+  autopilot:
+    enabled: true
+  runtimeOptions:
+    default-io-profile: "6"
+  csi:
+    enabled: true
+  monitoring:
+    telemetry:
+      enabled: true
+    prometheus:
+      enabled: true
+      exportMetrics: true
+  env:
+  - name: PURE_FLASHARRAY_SAN_TYPE
+    value: "ISCSI"
