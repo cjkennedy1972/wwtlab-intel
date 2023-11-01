@@ -2,7 +2,7 @@
 kind: StorageCluster
 apiVersion: core.libopenstorage.org/v1
 metadata:
-  name: ocp-on-sapphire_rapids
+  name: ocp-on-sapphire
   namespace: portworx
   annotations:
     portworx.io/is-openshift: "true"
