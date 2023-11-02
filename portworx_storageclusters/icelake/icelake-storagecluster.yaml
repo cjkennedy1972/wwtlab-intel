@@ -6,7 +6,10 @@ metadata:
   namespace: portworx
   annotations:
     portworx.io/is-openshift: "true"
-    portworx.io/disable-storage-classes: "true"
+    portworx.io/disable-storage-class: "true"
+    portworx.io/pvc-controller-port: '10261'
+    portworx.io/pvc-controller-secure-port: '10262'
+    portworx.io/scc-priority: '2'    
 spec:
   image: portworx/oci-monitor:3.0.3
   imagePullPolicy: Always
