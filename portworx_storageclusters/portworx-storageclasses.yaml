@@ -1,0 +1,37 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: px-rep3
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+parameters:
+  repl: "3"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: px-rep2
+parameters:
+  repl: "2"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: px-rwx
+parameters:
+  repl: "3"
+  sharedv4: "true"
+  sharedv4_svc_type: "ClusterIP"
+  stork.libopenstorage.org/preferRemoteNodeOnly: "true"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
