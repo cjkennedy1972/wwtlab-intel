@@ -1,14 +1,14 @@
 apiVersion: nmstate.io/v1
 kind: NodeNetworkConfigurationPolicy
 metadata:
-  name: host1-eno12409-policy 
+  name: host1sapphire-eno12409-policy 
 spec:
   nodeSelector: 
-    kubernetes.io/hostname: host1 
+    kubernetes.io/hostname: host1sapphire
   desiredState:
     interfaces:
     - name: eno12409 
-      description: Configuring eno12409 on host1 
+      description: Configuring eno12409 on host1sapphire
       type: ethernet 
       state: up 
       ipv4:
