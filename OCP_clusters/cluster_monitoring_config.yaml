@@ -5,3 +5,11 @@ metadata:
   namespace: openshift-monitoring
 data:
   config.yaml: |
+    enableUserWorkload: true
+    prometheusK8s:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: px-rep2
+          resources:
+            requests:
+              storage: 40Gi
